@@ -19,4 +19,6 @@ public interface PlanService {
 
     public boolean softDelete(Integer planId, String activeSwitch);
 
+    public boolean deletePlanById(Integer planId);
+
 }
