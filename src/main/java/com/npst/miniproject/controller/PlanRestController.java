@@ -1,5 +1,7 @@
 package com.npst.miniproject.controller;
 
+import com.npst.miniproject.configuration.ApplicationProperties;
+import com.npst.miniproject.constants.AppConstants;
 import com.npst.miniproject.entity.PlanEntity;
 import com.npst.miniproject.service.PlanService;
 import org.springframework.http.HttpStatus;
@@ -12,10 +14,14 @@ import java.util.Map;
 @RestController
 public class PlanRestController {
 
+
     private final PlanService planService;
 
-    public PlanRestController(PlanService planService) {
+    private final Map<String, String> messages;
+
+    public PlanRestController(PlanService planService, ApplicationProperties applicationProperties) {
         this.planService = planService;
+        this.messages = applicationProperties.getMessages();
     }
 
     @GetMapping("/categories")
@@ -27,7 +33,7 @@ public class PlanRestController {
     @PostMapping("/save")
     public ResponseEntity<String> savePlan(@RequestBody PlanEntity plan) {
         boolean save = planService.savePlan(plan);
-        String result = save ? "Plan Saved" : "Plan not saved";
+        String result = save ? messages.get(AppConstants.PLAN_SAVE_SUCCESS) : messages.get(AppConstants.PLAN_FAILED);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
@@ -46,15 +52,15 @@ public class PlanRestController {
     @DeleteMapping("/plan/{planId}")
     public ResponseEntity<String> deletePlanById(@PathVariable Integer planId) {
         boolean isDeleted = planService.deletePlanById(planId);
-        String result = isDeleted ? "Plan Is Deleted" : "Plan Is Not Deleted";
+        String result = isDeleted ? messages.get(AppConstants.PLAN_DELETE_SUCCESS) : messages.get(AppConstants.PLAN_DELETE_FAILED);
         return new ResponseEntity<>(result, HttpStatus.OK);
 
     }
 
     @PutMapping("/updatePlan")
     public ResponseEntity<String> updatePlan(@RequestBody PlanEntity plan) {
-        boolean isupdated = planService.updatePlan(plan);
-        String result = isupdated ? "Plan Is Updated" : "Plan Is Not Updated";
+        boolean updated = planService.updatePlan(plan);
+        String result = updated ? messages.get(AppConstants.PLAN_UPDATE_SUCCESS) : messages.get(AppConstants.PLAN_UPDATE_FAILED);
         return new ResponseEntity<>(result, HttpStatus.OK);
 
     }
@@ -62,8 +68,7 @@ public class PlanRestController {
     @PutMapping("/StatusChange")
     public ResponseEntity<String> softDelete(Integer planId, String activeSwitch) {
         boolean isChanged = planService.softDelete(planId, activeSwitch);
-        String result = isChanged ? "Plan Status Is Changed" : "Plan Status Is Not Changed";
+        String result = isChanged ? messages.get(AppConstants.PLAN_STATUS_CHANGE) : messages.get(AppConstants.PLAN_STATUS_NO_CHANGE);
         return new ResponseEntity<>(result, HttpStatus.OK);
-
     }
 }

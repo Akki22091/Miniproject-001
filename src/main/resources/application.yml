@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: miniproject
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/miniproject
+    username: root
+    password: Akki143@
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+
+plan-api:
+  messages:
+    planSaveSuccess: Plan Saved Successfully!
+    planFailed: Plan Saved fail
+    planUpdateSuccess: Plan Update Successfully!
+    planUpdateFailed: Failed To update the Plan
+    planDeleteSuccess: Plan Has been deleted Successfully!
+    planDeleteFailed: Plan Did not deleted
+    planStatusChange: Plan status has been changed Successfully!
+    planStatusNoChange: Plan status has failed to change

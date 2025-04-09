@@ -5,23 +5,19 @@ import com.npst.miniproject.dao.PlanRepository;
 import com.npst.miniproject.entity.PlanCategory;
 import com.npst.miniproject.entity.PlanEntity;
 import com.npst.miniproject.service.PlanService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class PlanServiceImpl implements PlanService {
 
-    private final PlanCategoryRepository planCategoryRepository;
-    private final PlanRepository planRepository;
+    @Autowired
+    private PlanCategoryRepository planCategoryRepository;
+    @Autowired
+    private PlanRepository planRepository;
 
-    public PlanServiceImpl(PlanCategoryRepository planCategoryRepository, PlanRepository planRepository) {
-        this.planCategoryRepository = planCategoryRepository;
-        this.planRepository = planRepository;
-    }
 
     @Override
     public Map<Integer, String> getPlanCategories() {
