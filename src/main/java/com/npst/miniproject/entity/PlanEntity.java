@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @Entity
 @Data
-@Table(name = "PLAN_MASTER")
+@Table(name = "PLAN")
 public class PlanEntity {
 
     @Id
@@ -16,7 +16,7 @@ public class PlanEntity {
     @Column(name = "PLAN_ID")
     private Integer planId;
 
-    @Column(name="PLAN_NAME")
+    @Column(name = "PLAN_NAME")
     private String planName;
 
     @Column(name = "PLAN_START_DATE")
@@ -25,11 +25,10 @@ public class PlanEntity {
     @Column(name = "PLAN_END_DATE")
     private LocalDate planEndDate;
 
-    @Column(name="PLAN_CATEGORY_ID")
+    @Column(name = "PLAN_CATEGORY_ID")
     private Integer planCategoryId;
 
     @Column(name = "ACTIVE_SWITCH")
     private String activeSwitch;
-
 
 }

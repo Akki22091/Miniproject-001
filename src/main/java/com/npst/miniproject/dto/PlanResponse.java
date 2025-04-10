@@ -11,4 +11,5 @@ public class PlanResponse {
     private boolean success;
     private String message;
     private PlanEntity data;
+
 }

@@ -57,7 +57,6 @@ public class PlanServiceImpl implements PlanService {
         return plans;
     }
 
-
     @Override
     public PlanEntity getPlanById(Integer planId) {
         if (planId == null || planId <= 0) {
@@ -132,7 +131,6 @@ public class PlanServiceImpl implements PlanService {
         }
     }
 
-
     @Override
     public boolean deletePlanById(Integer planId) {
         if (planId == null || planId <= 0) {
@@ -152,5 +150,4 @@ public class PlanServiceImpl implements PlanService {
             throw new RuntimeException("Failed to delete the plan. Please try again later.");
         }
     }
-
 }
