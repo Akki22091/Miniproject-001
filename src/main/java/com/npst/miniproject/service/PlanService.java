@@ -3,11 +3,9 @@ package com.npst.miniproject.service;
 import com.npst.miniproject.entity.PlanEntity;
 
 import java.util.List;
-import java.util.Map;
 
 public interface PlanService {
 
-    public Map<Integer, String> getPlanCategories();
 
     public boolean savePlan(PlanEntity planEntity);
 
